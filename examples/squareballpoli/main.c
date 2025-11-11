@@ -13,7 +13,7 @@
 // ---------- Tunables ----------
 #define NUM_BALLS 1000                // number of balls
 static const float BALL_RADIUS_MIN = 1.0f;   // px
-static const float BALL_RADIUS_MAX = 10.0f;   // px
+static const float BALL_RADIUS_MAX = 20.0f;   // px
 static const float SPEED_MIN       = 20.0f;  // px/s
 static const float SPEED_MAX       = 100.0f; // px/s
 static const float SQUARE_SIZE     = 240.0f; // px (side length)
