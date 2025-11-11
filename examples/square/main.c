@@ -6,16 +6,18 @@
 #include <emscripten/emscripten.h>
 #include <emscripten/html5.h>
 
+/* Pointers to values we update from the resize callback */
 typedef struct {
     float *posX;
     float *posY;
 } AppState;
 
+/* Window resize → sync canvas size and recenter square */
 static EM_BOOL OnResize(int eventType, const EmscriptenUiEvent *ui, void *userData) {
     (void)eventType;
     AppState *state = (AppState*)userData;
 
-    // Sync canvas pixels to CSS size * DPR
+    // CSS size * devicePixelRatio → framebuffer pixels
     double cssW = 0.0, cssH = 0.0;
     emscripten_get_element_css_size("#canvas", &cssW, &cssH);
     const double dpr = emscripten_get_device_pixel_ratio();
@@ -23,7 +25,7 @@ static EM_BOOL OnResize(int eventType, const EmscriptenUiEvent *ui, void *userDa
     emscripten_set_canvas_element_size("#canvas", w, h);
     SetWindowSize((int)cssW, (int)cssH);
 
-    // Update position based on window size (example: keep centered)
+    // Keep square centered in logical (CSS) coords
     *state->posX = (float)cssW * 0.5f;
     *state->posY = (float)cssH * 0.5f;
 
@@ -36,8 +38,8 @@ static EM_BOOL OnResize(int eventType, const EmscriptenUiEvent *ui, void *userDa
 #endif
 
 int main(void) {
-    const int size = 320;
-    float posX = 200.0f, posY = 300.0f;
+    const int size = 100;          // square side length
+    float posX = 200.0f, posY = 300.0f;  // center; updated on resize
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_VSYNC_HINT);
     InitWindow(800, 450, "raylib: resize updates posX/posY");
@@ -45,14 +47,14 @@ int main(void) {
 
 #ifdef PLATFORM_WEB
     AppState state = { .posX = &posX, .posY = &posY };
-    OnResize(0, NULL, &state);
+    OnResize(0, NULL, &state);  // initialize sizes/position
     emscripten_set_resize_callback(EMSCRIPTEN_EVENT_TARGET_WINDOW, &state, EM_TRUE, OnResize);
 #endif
 
     float angle = 0.0f;
 
     while (!WindowShouldClose()) {
-        angle += 10.0f * GetFrameTime();
+        angle += 120.0f * GetFrameTime(); // rotate degrees per second
 
         BeginDrawing();
             ClearBackground(DARKGRAY);
