@@ -1,34 +1,53 @@
-# Prerequisites
-*.d
+# macOS cruft
+.DS_Store
 
-# Object files
+# Editors/IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Emscripten SDK (installed locally)
+emsdk/
+.emsdk.env
+
+# Emscripten build outputs
+*.wasm
+*.wasm.map
+*.js.map
+*.data
+*.mem
+*.symbols
+*.tmp
+
+# Example build artifacts (keep sources, ignore compiled outputs)
+examples/**/index.js
+examples/**/index.wasm
+
+# Raylib local clone: ignore build products
+raylib/**/build*/
+raylib/**/CMakeFiles/
+raylib/**/CMakeCache.txt
+raylib/**/cmake_install.cmake
+raylib/**/Makefile
+raylib/**/libraylib.a
+
+# Generic C/C++ build artifacts
+*.d
 *.o
-*.ko
 *.obj
 *.elf
-
-# Linker output
-*.ilk
 *.map
 *.exp
-
-# Precompiled Headers
 *.gch
 *.pch
-
-# Libraries
 *.lib
 *.a
 *.la
 *.lo
-
-# Shared objects (inc. Windows DLLs)
 *.dll
 *.so
 *.so.*
 *.dylib
-
-# Executables
 *.exe
 *.out
 *.app
@@ -41,8 +60,9 @@
 *.su
 *.idb
 *.pdb
+*.dwo
 
-# Kernel Module Compile Results
+# Kernel Module compile results (usually irrelevant here, but harmless to ignore)
 *.mod*
 *.cmd
 .tmp_versions/
@@ -51,5 +71,10 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-# debug information files
-*.dwo
+# CMake build dirs at repo root (if used)
+build/
+build_*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
