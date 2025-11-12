@@ -129,6 +129,16 @@ Simple watcher loop that re-invokes `build.sh` when files change (see script for
 
 ## Desktop build (optional)
 
+
+<img width="535" height="189" alt="Screenshot 2025-11-11 at 20 24 47" src="https://github.com/user-attachments/assets/7b0b1814-bba9-4d87-981f-631c3dd855de" />
+
+
+
+https://github.com/user-attachments/assets/59bac617-a262-4681-a5bd-7be752bec641
+
+
+
+
 A quick **macOS** build (if `pkg-config --cflags --libs raylib` works):
 
 ```bash
