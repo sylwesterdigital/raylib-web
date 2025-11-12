@@ -1,6 +1,7 @@
 
 # Live example:
-https://immersive-collective.org/projects/raylib/examples/cocodeluxe/index.html
+
+https://immersive-collective.org/projects/raylib/examples/cocosoap/index.html
 
 https://github.com/user-attachments/assets/1bd1d010-1f79-4bcc-8bf8-9f4709f9f3a4
 
